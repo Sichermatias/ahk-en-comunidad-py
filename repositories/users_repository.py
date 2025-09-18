@@ -1,16 +1,4 @@
-from dataclasses import dataclass, field
-
-@dataclass
-class Usuario:
-    id: int
-    nombre: str
-    apellido: str
-    email: str
-    fecha_nacimiento: str
-    biografia: str
-    provincia: str
-    localidad: str
-    gustos_musicales: list = field(default_factory=list)
+from entities.user import Usuario
 
 class UsersRepository:
     def __init__(self):

@@ -1,33 +1,14 @@
-from repository.users_repository import UsersRepository, Usuario
+from repositories.users_repository import UsersRepository
+from entities.user import Usuario
 
 
 class UsersService:
     def __init__(self, repo):
         self.repo = repo
-
-    def listar_usuarios(self):
-        return self.repo.listar_usuarios()
-
-    def crear_usuario(self, *, nombre, apellido, email, fecha_nacimiento, biografia, provincia, localidad, gustos_musicales):
-        if self.repo.obtener_por_email(email):
-            raise ValueError("email_duplicado")
-            
-        usuario_creado = Usuario(
-            id = self.repo.next_id(),
-            nombre = nombre.strip(),
-            apellido = apellido.strip(),
-            email = email.lower(),
-            fecha_nacimiento = str(fecha_nacimiento),
-            biografia = biografia.strip(),
-            provincia = provincia.strip(),
-            localidad = localidad.strip(),
-            gustos_musicales = list(dict.fromkeys([str(gusto).strip().lower() for gusto in gustos_musicales]))
-        )
-        
-        return self.repo.crear(usuario_creado)
-
-    def obtener_usuario(self, id_):
-        return self.repo.obtener(id_)
+    
+    def email_existe(self, email: str) -> bool:
+        """Verifica si un email ya existe en el sistema"""
+        return self.repo.obtener_por_email(email) is not None
 
     def actualizar_usuario(self, id_, nombre=None, apellido=None, email=None, 
                           fecha_nacimiento=None, biografia=None, provincia=None, 
