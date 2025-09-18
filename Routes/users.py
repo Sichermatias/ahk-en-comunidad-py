@@ -48,7 +48,17 @@ def obtener_usuario(id):
 async def actualizar_usuario(id, request: Request):
     data = await request.json()
     
-    usuario_actualizado = _service.actualizar_usuario(id, **data)
+    usuario_actualizado = _service.actualizar_usuario(
+        id,
+        nombre=data.get("nombre"),
+        apellido=data.get("apellido"),
+        email=data.get("email"),
+        fecha_nacimiento=data.get("fecha_nacimiento"),
+        biografia=data.get("biografia"),
+        provincia=data.get("provincia"),
+        localidad=data.get("localidad"),
+        gustos_musicales=data.get("gustos_musicales")
+    )
     
     if not usuario_actualizado:
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
