@@ -44,15 +44,15 @@ class UsersRepository:
         
         return self._by_id.get(id_) if id_ else None
 
-    def actualizar(self, id_, **kwargs):
+    def actualizar(self, id_, datos_actualizacion):
         usuario = self._by_id.get(id_)
         
         if not usuario:
             return None
             
-        for k, v in kwargs.items():
-            if v is not None and hasattr(usuario, k):
-                setattr(usuario, k, v)
+        for campo, valor in datos_actualizacion.items():
+            if valor is not None and hasattr(usuario, campo):
+                setattr(usuario, campo, valor)
                 
         return usuario
 
