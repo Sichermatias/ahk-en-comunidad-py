@@ -15,17 +15,11 @@ class Usuario:
         self.localidad = localidad
         self.gustos_musicales = gustos_musicales if gustos_musicales is not None else []
     
-    def agregar_gusto_musical(self, gusto: str):
-        """Agrega un gusto musical si no existe"""
-        gusto_normalizado = str(gusto).strip().lower()
-        if gusto_normalizado and gusto_normalizado not in self.gustos_musicales:
-            self.gustos_musicales.append(gusto_normalizado)
-    
-    def eliminar_gusto_musical(self, gusto: str):
-        """Elimina un gusto musical si existe"""
-        gusto_normalizado = str(gusto).strip().lower()
-        if gusto_normalizado in self.gustos_musicales:
-            self.gustos_musicales.remove(gusto_normalizado)
+    def agregar_gustos(self, gustos: List[str]):
+        for gusto in gustos:
+            gusto_normalizado = str(gusto).strip().lower()
+            if gusto_normalizado and gusto_normalizado not in self.gustos_musicales:
+                self.gustos_musicales.append(gusto_normalizado)
     
     def __repr__(self):
         return f"Usuario(id={self.id}, nombre='{self.nombre}', email='{self.email}')"
