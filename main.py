@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from routes.users_routes import router as users_router
 
-app = FastAPI(title="MC - Mi Comunidad (Simple)")
+app = FastAPI(title="EC - En Comunidad")
 
 app.include_router(users_router, prefix="/usuarios", tags=["usuarios"])
 
