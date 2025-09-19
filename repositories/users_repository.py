@@ -1,4 +1,3 @@
-from entities.user import Usuario
 
 class UsersRepository:
     def __init__(self):

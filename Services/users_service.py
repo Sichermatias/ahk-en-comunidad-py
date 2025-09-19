@@ -1,8 +1,8 @@
-from repositories.users_repository import UsersRepository
+from repositories.repositories import repo_users
 from entities.user import Usuario
 from fastapi import HTTPException
 
-_repo = UsersRepository()
+_repo = repo_users
 
 class UsersService:
 
